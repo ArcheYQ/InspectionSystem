@@ -15,7 +15,7 @@
         <TextView
             android:textColor="#ff000000"
             android:textSize="16sp"
-            android:text="登记设备"
+            android:text="添加设备"
             android:layout_gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />

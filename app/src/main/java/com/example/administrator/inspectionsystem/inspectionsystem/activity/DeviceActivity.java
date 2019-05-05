@@ -27,7 +27,7 @@ public class DeviceActivity extends BaseActivity {
     private void bindView() {
         rvDevice = findViewById(R.id.rv_device);
         deviceDataUtil = new DeviceDataUtil(this);
-        deviceAdapter = new DeviceAdapter(deviceDataUtil.getDevices(true),this);
+        deviceAdapter = new DeviceAdapter(deviceDataUtil.getDevices(true),this,false);
         rvDevice.setAdapter(deviceAdapter);
         rvDevice.setItemAnimator(new DefaultItemAnimator());
         rvDevice.setLayoutManager(new LinearLayoutManager(this));

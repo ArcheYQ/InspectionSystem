@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.administrator.inspectionsystem.R;
+import com.example.administrator.inspectionsystem.inspectionsystem.activity.DetailRegisterActivity;
 import com.example.administrator.inspectionsystem.inspectionsystem.activity.EditDeviceActivity;
 import com.example.administrator.inspectionsystem.inspectionsystem.bean.Device;
 
@@ -22,9 +23,11 @@ import java.util.List;
 public class DeviceAdapter extends RecyclerView.Adapter<DeviceAdapter.DeviceViewHolder> {
     List<Device> list;
     Context context;
-    public DeviceAdapter(List<Device> list, Context context) {
+    boolean isRegister;
+    public DeviceAdapter(List<Device> list, Context context, boolean isRegister) {
         this.list = list;
         this.context = context;
+        this.isRegister = isRegister;
     }
     public void setList(List<Device> list){
         this.list = list;
@@ -71,17 +74,32 @@ public class DeviceAdapter extends RecyclerView.Adapter<DeviceAdapter.DeviceView
             tvAddTime.setText("添加时间：" + formatTime("yyyy-MM-dd HH:mm",device.getAddTime()));
             tvLocation.setText("设备位置：" + device.getLocation().toString());
             if (!device.isPublic()) tvPublic.setVisibility(View.VISIBLE);
-            btEdit.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(context, EditDeviceActivity.class);
-                    Bundle bundle = new Bundle();
-                    bundle.putSerializable("editDevice",device);
-                    intent.putExtras(bundle);
-                    context.startActivity(intent);
-                }
-            });
+            if (isRegister) {
+                btEdit.setText("登记");
+                btEdit.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        startActivity(DetailRegisterActivity.class,device);
+
+                    }
+                });
+            }else{
+                btEdit.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        startActivity(EditDeviceActivity.class,device);
+                    }
+                });
+            }
+
         }
+    }
+    public void startActivity( Class<?> cls, Device device){
+        Intent intent = new Intent(context, cls);
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("editDevice",device);
+        intent.putExtras(bundle);
+        context.startActivity(intent);
     }
     public static String formatTime(String format, long time)
     {

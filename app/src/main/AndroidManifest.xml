@@ -39,7 +39,10 @@
         <activity android:name=".inspectionsystem.activity.EditUserActivity" />
         <activity android:name=".inspectionsystem.activity.AddDeviceActivity" />
         <activity android:name=".inspectionsystem.activity.DeviceActivity" />
-        <activity android:name=".inspectionsystem.activity.EditDeviceActivity"></activity>
+        <activity android:name=".inspectionsystem.activity.EditDeviceActivity" />
+        <activity android:name=".inspectionsystem.activity.RegisterActivity" />
+        <activity android:name=".inspectionsystem.activity.DetailRegisterActivity" />
+        <activity android:name=".inspectionsystem.activity.AddRegisterActivity"></activity>
     </application>
 
 </manifest>
