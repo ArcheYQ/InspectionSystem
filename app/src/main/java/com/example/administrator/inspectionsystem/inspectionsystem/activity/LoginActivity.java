@@ -1,5 +1,6 @@
 package com.example.administrator.inspectionsystem.inspectionsystem.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.example.administrator.inspectionsystem.R;
+import com.example.administrator.inspectionsystem.inspectionsystem.bean.Role;
 import com.example.administrator.inspectionsystem.inspectionsystem.bean.User;
 import com.example.administrator.inspectionsystem.inspectionsystem.utils.UserDataUtil;
 
@@ -31,14 +33,14 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         bindView();
         userDataUtil = new UserDataUtil(this);
         rbLoginAdm.setChecked(true);
-        curRole = User.ROLE_ADMINISTRATOR;
+        curRole = Role.ADMIN.value;
         rgChoose.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, @IdRes int i) {
                 if (i == R.id.rb_login_administrato){
-                    curRole = User.ROLE_ADMINISTRATOR;
+                    curRole = Role.ADMIN.value;
                 }else {
-                    curRole = User.ROLE_INSPECTOR;
+                    curRole = Role.INSPECTOR.value;
                 }
             }
         });
@@ -70,7 +72,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                     Toast.makeText(mActivity, "账号不存在", Toast.LENGTH_SHORT).show();
                     break;
                 }
-                if (curUser.getRole() != curRole){
+                if (curUser.getRole().value != curRole){
                     Toast.makeText(mActivity, "角色验证失败", Toast.LENGTH_SHORT).show();
                     break;
                 }
@@ -78,7 +80,16 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                     Toast.makeText(mActivity, "密码错误", Toast.LENGTH_SHORT).show();
                     break;
                 }
-                Toast.makeText(mActivity, "登陆成功", Toast.LENGTH_SHORT).show();
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("curUser",curUser);
+                if(curRole == Role.ADMIN.value)  {
+                    Intent intent = new Intent(this,AdminActivity.class);
+                    intent.putExtras(bundle);
+                    startActivity(intent);
+                }else {
+
+                }
+                finish();
                 break;
         }
     }
