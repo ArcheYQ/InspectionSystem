@@ -20,7 +20,7 @@ public class UserDataUtil {
         this.inspectionData = new InspectionData(context);
        }
 
-    public static void creatUserData(SQLiteDatabase db){
+    public static void createUserData(SQLiteDatabase db){
         list = new ArrayList<>();
         for (int i = 1; i <= 3; i++) {
             User adm = new User();
@@ -39,37 +39,19 @@ public class UserDataUtil {
             list.add(ins);
         }
         for (User user : list) {
-            ContentValues contentValues = new ContentValues();
-            contentValues.put(InspectionTable.COL_USER_ACCOUNT,user.getAccount());
-            contentValues.put(InspectionTable.COL_USER_NAME,user.getName());
-            contentValues.put(InspectionTable.COL_USER_PASSWORD,user.getPassword());
-            contentValues.put(InspectionTable.COL_USER_ROLE,user.getRole().value);
+            ContentValues contentValues = assemble(user);
             db.insert(InspectionTable.TBL_NAME_USER,null,contentValues);
         }
     }
     public void addInspector(User user){
         SQLiteDatabase db = inspectionData.getReadableDatabase();
-        ContentValues contentValues = new ContentValues();
-        contentValues.put(InspectionTable.COL_USER_ACCOUNT,user.getAccount());
-        contentValues.put(InspectionTable.COL_USER_NAME,user.getName());
-        contentValues.put(InspectionTable.COL_USER_PASSWORD,user.getPassword());
-        contentValues.put(InspectionTable.COL_USER_ROLE,user.getRole().value);
+        ContentValues contentValues = assemble(user);
         db.insert(InspectionTable.TBL_NAME_USER,null,contentValues);
     }
     public User getUserFromAccount(String account){
         SQLiteDatabase db = inspectionData.getReadableDatabase();
         Cursor cursor = db.query(InspectionTable.TBL_NAME_USER, null,InspectionTable.COL_USER_ACCOUNT+" = ? ", new String[]{account},null,null,null,null);
-        User aim = new User();
-        if(cursor.getCount() == 0){
-            return null;
-        }
-        for (cursor.moveToFirst(); !cursor.isAfterLast(); cursor.moveToNext()) {
-            aim.setRole(Role.getRole(cursor.getInt(cursor.getColumnIndex(InspectionTable.COL_USER_ROLE))));
-            aim.setName(cursor.getString(cursor.getColumnIndex(InspectionTable.COL_USER_NAME)));
-            aim.setPassword(cursor.getString(cursor.getColumnIndex(InspectionTable.COL_USER_PASSWORD)));
-            aim.setAccount(cursor.getString(cursor.getColumnIndex(InspectionTable.COL_USER_ACCOUNT)));
-        }
-        return aim;
+        return assemble(cursor);
     }
 
     public List<User> getInspectors(){
@@ -80,11 +62,7 @@ public class UserDataUtil {
         }
         List<User> list = new ArrayList<>();
         for (cursor.moveToFirst(); !cursor.isAfterLast(); cursor.moveToNext()) {
-            User aim = new User();
-            aim.setRole(Role.getRole(cursor.getInt(cursor.getColumnIndex(InspectionTable.COL_USER_ROLE))));
-            aim.setName(cursor.getString(cursor.getColumnIndex(InspectionTable.COL_USER_NAME)));
-            aim.setPassword(cursor.getString(cursor.getColumnIndex(InspectionTable.COL_USER_PASSWORD)));
-            aim.setAccount(cursor.getString(cursor.getColumnIndex(InspectionTable.COL_USER_ACCOUNT)));
+            User aim = assemble(cursor);
             list.add(aim);
         }
         return list;
@@ -99,5 +77,26 @@ public class UserDataUtil {
         contentValues.put(InspectionTable.COL_USER_PASSWORD,user.getPassword());
         String whereClause = InspectionTable.COL_USER_ACCOUNT+"=?" ;
         db.update(InspectionTable.TBL_NAME_USER,contentValues,whereClause,new String[]{user.getAccount()});
+    }
+
+    private static ContentValues assemble(User user){
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(InspectionTable.COL_USER_ACCOUNT,user.getAccount());
+        contentValues.put(InspectionTable.COL_USER_NAME,user.getName());
+        contentValues.put(InspectionTable.COL_USER_PASSWORD,user.getPassword());
+        contentValues.put(InspectionTable.COL_USER_ROLE,user.getRole().value);
+        return contentValues;
+    }
+
+    private static User assemble(Cursor cursor){
+        User aim = new User();
+        if(cursor.getCount() == 0){
+            return null;
+        }
+        aim.setRole(Role.getRole(cursor.getInt(cursor.getColumnIndex(InspectionTable.COL_USER_ROLE))));
+        aim.setName(cursor.getString(cursor.getColumnIndex(InspectionTable.COL_USER_NAME)));
+        aim.setPassword(cursor.getString(cursor.getColumnIndex(InspectionTable.COL_USER_PASSWORD)));
+        aim.setAccount(cursor.getString(cursor.getColumnIndex(InspectionTable.COL_USER_ACCOUNT)));
+        return aim;
     }
 }
