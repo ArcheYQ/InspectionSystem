@@ -22,7 +22,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
     <activity
-        android:name=".inspectionsystem.activity.MainActivity">
+        android:name=".inspectionsystem.activity.MainActivity"
+        android:theme="@style/ThemeSplash">
         <intent-filter>
             <action android:name="android.intent.action.MAIN" />
 

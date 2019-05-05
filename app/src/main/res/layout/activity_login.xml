@@ -84,11 +84,11 @@
         android:layout_below ="@id/ll_login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/rg_choose"
+        android:id="@+id/rg_login_choose"
         android:layout_centerHorizontal="true"
         android:orientation="horizontal" >
         <RadioButton
-            android:id="@+id/rb_administrato"
+            android:id="@+id/rb_login_administrato"
             android:layout_marginRight="55dp"
             android:layout_alignParentRight="true"
             android:textColor="#6a7e80"
@@ -98,7 +98,7 @@
             android:button="@drawable/radio_button_style"
             />
         <RadioButton
-            android:id="@+id/rb_student"
+            android:id="@+id/rb_login_inspector"
             android:layout_marginLeft="55dp"
             android:layout_alignParentLeft="true"
             android:textColor="#6a7e80"
@@ -114,7 +114,7 @@
         android:background="@drawable/check_border_all"
         android:layout_marginTop="50dp"
         android:id="@+id/bu_login"
-        android:layout_below ="@id/rg_choose"
+        android:layout_below ="@id/rg_login_choose"
         android:text="登录"
         android:layout_marginRight="55dp"
         android:layout_centerInParent="true"
