@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import com.example.administrator.inspectionsystem.inspectionsystem.utils.UserDataUtil;
 
 public class InspectionData extends SQLiteOpenHelper {
-    private static final String DB_NAME = "INSPECTION.DB";
+    private static final String DB_NAME = "INSPECTION2.DB";
     private static final int DB_VERSION = 1;
     public InspectionData (Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);
@@ -24,6 +24,8 @@ public class InspectionData extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         String NewSQL = InspectionTable.getCreatUSERSQL();
+        db.execSQL(NewSQL);
+        NewSQL = InspectionTable.getCreatADVICESQL();
         db.execSQL(NewSQL);
         UserDataUtil.creatUserData(db);
     }

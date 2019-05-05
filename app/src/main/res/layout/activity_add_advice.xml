@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
     <android.support.v7.widget.Toolbar
-        android:id="@+id/tb_addUser"
+        android:id="@+id/tb_addAdvice"
         android:background="#FFFFFF"
         android:elevation="5dp"
         android:layout_width="match_parent"
@@ -26,7 +26,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
         <EditText
-            android:id="@+id/et_addUser_account"
+            android:id="@+id/et_addAdvice_number"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_marginLeft="5dp"
@@ -40,7 +40,7 @@
             android:layout_height="3px"
             android:layout_marginLeft="5dp" />
         <EditText
-            android:id="@+id/et_addUser_password"
+            android:id="@+id/et_addadvice_name"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_marginLeft="5dp"
@@ -54,7 +54,7 @@
             android:layout_height="3px"
             android:layout_marginLeft="5dp" />
         <EditText
-            android:id="@+id/et_addUser_username"
+            android:id="@+id/et_addAdvice_location"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_marginLeft="5dp"
@@ -67,8 +67,32 @@
             android:layout_width="match_parent"
             android:layout_height="3px"
             android:layout_marginLeft="5dp" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_margin="10dp"
+            android:gravity="center">
+            <TextView
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="是否公开"
+                android:textColor="#000"
+                android:textSize="16sp"
+                android:layout_marginLeft="5dp" />
+            <com.suke.widget.SwitchButton
+                android:id="@+id/switch_button"
+                android:layout_width="60dp"
+                android:layout_height="35dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="10dp"
+                app:sb_checked="true"
+                app:sb_uncheckcircle_width="0dp"
+                app:sb_checked_color="@color/colorPrimary"
+                />
+        </RelativeLayout>
         <Button
-            android:id="@+id/bt_addUser"
+            android:id="@+id/bt_addAdvice"
             android:layout_width="160dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
