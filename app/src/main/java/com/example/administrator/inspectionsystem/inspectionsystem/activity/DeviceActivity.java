@@ -1,13 +1,20 @@
 package com.example.administrator.inspectionsystem.inspectionsystem.activity;
 
 import android.os.Bundle;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import com.example.administrator.inspectionsystem.R;
+import com.example.administrator.inspectionsystem.inspectionsystem.adapter.DeviceAdapter;
+import com.example.administrator.inspectionsystem.inspectionsystem.utils.DeviceDataUtil;
 
 public class DeviceActivity extends BaseActivity {
-
+    RecyclerView rvDevice;
+    DeviceDataUtil deviceDataUtil;
+    DeviceAdapter deviceAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -18,7 +25,12 @@ public class DeviceActivity extends BaseActivity {
     }
 
     private void bindView() {
-
+        rvDevice = findViewById(R.id.rv_device);
+        deviceDataUtil = new DeviceDataUtil(this);
+        deviceAdapter = new DeviceAdapter(deviceDataUtil.getDevices(true),this);
+        rvDevice.setAdapter(deviceAdapter);
+        rvDevice.setItemAnimator(new DefaultItemAnimator());
+        rvDevice.setLayoutManager(new LinearLayoutManager(this));
     }
 
     @Override
@@ -33,5 +45,11 @@ public class DeviceActivity extends BaseActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        deviceAdapter.setList(deviceDataUtil.getDevices(true));
     }
 }

@@ -43,13 +43,13 @@ public class AdminActivity extends BaseActivity implements View.OnClickListener 
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.bt_adm_add:
-
                 break;
             case R.id.bt_adm_back:
                 cleanUser();
                 startActivity(LoginActivity.class,null,true);
                 break;
             case R.id.bt_adm_device:
+                startActivity(DeviceActivity.class,null,false);
                 break;
             case R.id.bt_adm_user:
                 startActivity(UserActivity.class,null,false);

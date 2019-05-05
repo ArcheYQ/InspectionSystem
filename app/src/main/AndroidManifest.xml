@@ -38,7 +38,8 @@
         <activity android:name=".inspectionsystem.activity.AddUserActivity" />
         <activity android:name=".inspectionsystem.activity.EditUserActivity" />
         <activity android:name=".inspectionsystem.activity.AddDeviceActivity" />
-        <activity android:name=".inspectionsystem.activity.DeviceActivity"></activity>
+        <activity android:name=".inspectionsystem.activity.DeviceActivity" />
+        <activity android:name=".inspectionsystem.activity.EditDeviceActivity"></activity>
     </application>
 
 </manifest>
