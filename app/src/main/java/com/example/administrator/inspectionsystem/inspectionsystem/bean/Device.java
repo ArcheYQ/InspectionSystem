@@ -1,6 +1,8 @@
 package com.example.administrator.inspectionsystem.inspectionsystem.bean;
 
-public class Device {
+import java.io.Serializable;
+
+public class Device implements Serializable {
 
     /**
      * 编号
@@ -9,7 +11,7 @@ public class Device {
     /**
      * 主键ID
      */
-    private String id;
+    private int id;
     /**
      * 设备名称
      */
@@ -31,7 +33,7 @@ public class Device {
      */
     private int isPublic;
     public Device(){
-        isPublic = 1;
+        this.isPublic = 1;
     }
     public String getNumber() {
         return number;
@@ -41,11 +43,11 @@ public class Device {
         this.number = number;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 

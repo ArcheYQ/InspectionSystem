@@ -24,6 +24,7 @@ public class AddDeviceActivity extends BaseActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_device);
         setToolBar(R.id.tb_addDevice);
+        device = new Device();
         initHome();
         bindView();
         deviceDataUtil = new DeviceDataUtil(this);

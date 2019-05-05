@@ -41,7 +41,7 @@ public class DeviceDataUtil {
         List<Device> list = new ArrayList<>();
         for (cursor.moveToFirst(); !cursor.isAfterLast(); cursor.moveToNext()) {
             Device aim = new Device();
-            aim.setId(cursor.getString(cursor.getColumnIndex(InspectionTable.COL_DEVICE_ID)));
+            aim.setId(cursor.getInt(cursor.getColumnIndex(InspectionTable.COL_DEVICE_ID)));
             aim.setAddTime(cursor.getLong(cursor.getColumnIndex(InspectionTable.COL_DEVICE_ADDTIME)));
             aim.setPublic(cursor.getInt(cursor.getColumnIndex(InspectionTable.COL_DEVICE_ISPUBLISH)));
             aim.setLocation(cursor.getString(cursor.getColumnIndex(InspectionTable.COL_DEVICE_LOCATION)));
@@ -51,5 +51,17 @@ public class DeviceDataUtil {
             list.add(aim);
         }
         return list;
+    }
+    public void editDevice(Device device) {
+        SQLiteDatabase db=inspectionData.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(InspectionTable.COL_DEVICE_NAME,device.getName());
+        contentValues.put(InspectionTable.COL_DEVICE_LOCATION,device.getLocation());
+        String whereClause = InspectionTable.COL_DEVICE_ID+"=?" ;
+        db.update(InspectionTable.TBL_NAME_DEVICE,contentValues,whereClause,new String[]{device.getId()+""});
+    }
+    public void deleteDevice(Device device) {
+        SQLiteDatabase db=inspectionData.getWritableDatabase();
+        db.delete(InspectionTable.TBL_NAME_DEVICE,InspectionTable.COL_DEVICE_ID+"=?",new String[]{device.getId()+""});
     }
 }
