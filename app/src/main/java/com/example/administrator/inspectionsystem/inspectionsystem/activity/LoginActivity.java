@@ -1,6 +1,7 @@
 package com.example.administrator.inspectionsystem.inspectionsystem.activity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.view.View;
@@ -80,12 +81,9 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                     Toast.makeText(mActivity, "密码错误", Toast.LENGTH_SHORT).show();
                     break;
                 }
-                Bundle bundle = new Bundle();
-                bundle.putSerializable("curUser",curUser);
+                setCurUser(curUser);
                 if(curRole == Role.ADMIN.value)  {
-                    Intent intent = new Intent(this,AdminActivity.class);
-                    intent.putExtras(bundle);
-                    startActivity(intent);
+                    startActivity(AdminActivity.class,null,true);
                 }else {
 
                 }

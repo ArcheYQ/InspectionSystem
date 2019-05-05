@@ -34,7 +34,10 @@
         </activity>
         <activity android:name=".inspectionsystem.activity.LoginActivity" />
         <activity android:name=".inspectionsystem.activity.AdminActivity" />
-        <activity android:name=".inspectionsystem.activity.UserActivity"></activity>
+        <activity android:name=".inspectionsystem.activity.UserActivity" />
+        <activity android:name=".inspectionsystem.activity.AddUserActivity" />
+        <activity android:name=".inspectionsystem.activity.EditUserActivity" />
+        <activity android:name=".inspectionsystem.activity.AddAdviceActivity"></activity>
     </application>
 
 </manifest>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/tb_addUser"
+        android:background="#FFFFFF"
+        android:elevation="5dp"
+        android:layout_width="match_parent"
+        android:layout_marginBottom="5dp"
+        android:layout_height="45dp">
+        <TextView
+            android:textColor="#ff000000"
+            android:textSize="16sp"
+            android:text="登记设备"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </android.support.v7.widget.Toolbar>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_margin="10dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <EditText
+            android:id="@+id/et_addUser_account"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="5dp"
+            android:background="#fff"
+            android:gravity="center"
+            android:hint="设备编号"
+            android:textSize="15dp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="3px"
+            android:layout_marginLeft="5dp" />
+        <EditText
+            android:id="@+id/et_addUser_password"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="5dp"
+            android:background="#fff"
+            android:gravity="center"
+            android:hint="设备名称"
+            android:textSize="15dp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="3px"
+            android:layout_marginLeft="5dp" />
+        <EditText
+            android:id="@+id/et_addUser_username"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="5dp"
+            android:background="#fff"
+            android:gravity="center"
+            android:hint="设备位置"
+            android:textSize="15dp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="3px"
+            android:layout_marginLeft="5dp" />
+        <Button
+            android:id="@+id/bt_addUser"
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/check_border_all"
+            android:text="确定"
+            android:textColor="#6a7e80" />
+    </LinearLayout>
+
+
+</LinearLayout>

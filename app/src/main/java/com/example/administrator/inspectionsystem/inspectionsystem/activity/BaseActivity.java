@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
@@ -25,6 +26,8 @@ import android.widget.Toast;
 
 
 import com.example.administrator.inspectionsystem.R;
+import com.example.administrator.inspectionsystem.inspectionsystem.bean.Role;
+import com.example.administrator.inspectionsystem.inspectionsystem.bean.User;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -81,7 +84,30 @@ public class BaseActivity extends AppCompatActivity {
             actionBar.setDisplayShowTitleEnabled(false);
         }
     }
-
+    public void setCurUser(User user){
+        SharedPreferences userSettings = getSharedPreferences("curUser", 0);
+        SharedPreferences.Editor editor = userSettings.edit();
+        editor.putString("name",user.getName());
+        editor.putInt("ROLE",user.getRole().value);
+        editor.putString("account",user.getAccount());
+        editor.putString("password",user.getPassword());
+        editor.commit();
+    }
+    public User getCurUser(){
+        User cur = new User();
+        SharedPreferences userSettings= getSharedPreferences("curUser", 0);
+        cur.setAccount(userSettings.getString("account","default"));
+        cur.setPassword(userSettings.getString("password","default"));
+        cur.setName(userSettings.getString("name","default"));
+        cur.setRole(Role.getRole(userSettings.getInt("ROLE",1)));
+        return cur;
+    }
+    public void cleanUser(){
+        SharedPreferences userSettings= getSharedPreferences("curUser", 0);
+        SharedPreferences.Editor editor = userSettings.edit();
+        editor.clear();
+        editor.commit();
+    }
     public void initToolBarAsHome(String title) {
         if (mToolbar != null) {
             setSupportActionBar(mToolbar);
@@ -89,7 +115,7 @@ public class BaseActivity extends AppCompatActivity {
         }
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
-            actionBar.setHomeAsUpIndicator(R.drawable.black_back);
+            actionBar.setHomeAsUpIndicator(R.mipmap.black_back);
             actionBar.setDisplayHomeAsUpEnabled(true);
             actionBar.setTitle(title);
         }
@@ -101,7 +127,7 @@ public class BaseActivity extends AppCompatActivity {
         }
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
-            actionBar.setHomeAsUpIndicator(R.drawable.black_back);
+            actionBar.setHomeAsUpIndicator(R.mipmap.black_back);
             actionBar.setDisplayHomeAsUpEnabled(true);
             actionBar.setTitle("");
         }
@@ -112,7 +138,7 @@ public class BaseActivity extends AppCompatActivity {
         }
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
-            actionBar.setHomeAsUpIndicator(R.drawable.white_back);
+            actionBar.setHomeAsUpIndicator(R.mipmap.white_back);
             actionBar.setDisplayHomeAsUpEnabled(true);
             actionBar.setTitle("");
         }

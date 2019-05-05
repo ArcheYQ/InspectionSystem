@@ -47,7 +47,15 @@ public class UserDataUtil {
             db.insert(InspectionTable.TBL_NAME_USER,null,contentValues);
         }
     }
-
+    public void addInspector(User user){
+        SQLiteDatabase db = inspectionData.getReadableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(InspectionTable.COL_USER_ACCOUNT,user.getAccount());
+        contentValues.put(InspectionTable.COL_USER_NAME,user.getName());
+        contentValues.put(InspectionTable.COL_USER_PASSWORD,user.getPassword());
+        contentValues.put(InspectionTable.COL_USER_ROLE,user.getRole().value);
+        db.insert(InspectionTable.TBL_NAME_USER,null,contentValues);
+    }
     public User getUserFromAccount(String account){
         SQLiteDatabase db = inspectionData.getReadableDatabase();
         Cursor cursor = db.query(InspectionTable.TBL_NAME_USER, null,InspectionTable.COL_USER_ACCOUNT+" = ? ", new String[]{account},null,null,null,null);
@@ -80,5 +88,16 @@ public class UserDataUtil {
             list.add(aim);
         }
         return list;
+    }
+    public void deleteInspector(String account) {
+        SQLiteDatabase db=inspectionData.getWritableDatabase();
+        db.delete(InspectionTable.TBL_NAME_USER,InspectionTable.COL_USER_ACCOUNT+"=?",new String[]{account});
+    }
+    public void editUser(User user) {
+        SQLiteDatabase db=inspectionData.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(InspectionTable.COL_USER_PASSWORD,user.getPassword());
+        String whereClause = InspectionTable.COL_USER_ACCOUNT+"=?" ;
+        db.update(InspectionTable.TBL_NAME_USER,contentValues,whereClause,new String[]{user.getAccount()});
     }
 }

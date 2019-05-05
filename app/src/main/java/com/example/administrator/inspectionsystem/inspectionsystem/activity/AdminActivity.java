@@ -21,7 +21,7 @@ public class AdminActivity extends BaseActivity implements View.OnClickListener 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin);
-        curUser = (User) getIntent().getSerializableExtra("curUser");
+        curUser = getCurUser();
         bindView();
 
     }
@@ -46,15 +46,13 @@ public class AdminActivity extends BaseActivity implements View.OnClickListener 
 
                 break;
             case R.id.bt_adm_back:
+                cleanUser();
+                startActivity(LoginActivity.class,null,true);
                 break;
             case R.id.bt_adm_device:
                 break;
             case R.id.bt_adm_user:
-                Bundle bundle = new Bundle();
-                bundle.putSerializable("curUser",curUser);
-                Intent intent = new Intent(this,UserActivity.class);
-                intent.putExtras(bundle);
-                startActivity(intent);
+                startActivity(UserActivity.class,null,false);
                 break;
         }
     }
