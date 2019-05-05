@@ -1,5 +1,8 @@
 package com.example.administrator.inspectionsystem;
 
+import com.example.administrator.inspectionsystem.inspectionsystem.bean.Register;
+import com.example.administrator.inspectionsystem.inspectionsystem.utils.DataUtil;
+
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -12,6 +15,12 @@ import static org.junit.Assert.*;
 public class ExampleUnitTest {
     @Test
     public void addition_isCorrect() {
-        assertEquals(4, 2 + 2);
+        Register register = new Register();
+        register.setId(1000);
+        register.setPressure("30度");
+        register.setTemperature("40度高温");
+        DataUtil.getListByExample(register,null);
+//        System.out.println(Integer.class.isAssignableFrom(Number.class));
+//        System.out.println(Number.class.isAssignableFrom(Integer.class));
     }
 }

@@ -9,7 +9,6 @@ import java.lang.annotation.Target;
 @Target(ElementType.FIELD)
 public @interface TableColumn {
     String field();
-    String type() default "String";
-    boolean autoIncreace() default false;
+    boolean autoIncrease() default false;
     boolean primary() default false;
 }
