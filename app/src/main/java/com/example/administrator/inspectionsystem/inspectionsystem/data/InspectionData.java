@@ -23,9 +23,11 @@ public class InspectionData extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String NewSQL = InspectionTable.getCreatUSERSQL();
+        String NewSQL = InspectionTable.getCreateUSERSQL();
         db.execSQL(NewSQL);
-        NewSQL = InspectionTable.getCreatDEVICESQL();
+        NewSQL = InspectionTable.getCreateDEVICESQL();
+        db.execSQL(NewSQL);
+        NewSQL = InspectionTable.getCreateREGISTER();
         db.execSQL(NewSQL);
         UserDataUtil.createUserData(db);
     }

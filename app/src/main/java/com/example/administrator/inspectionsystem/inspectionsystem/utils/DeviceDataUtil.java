@@ -29,6 +29,7 @@ public class DeviceDataUtil {
         contentValues.put(InspectionTable.COL_DEVICE_NUMBER, device.getNumber());
         db.insert(InspectionTable.TBL_NAME_DEVICE,null,contentValues);
     }
+
     public List<Device> getDevices(boolean isAdm){
         SQLiteDatabase db = inspectionData.getReadableDatabase();
         Cursor cursor;

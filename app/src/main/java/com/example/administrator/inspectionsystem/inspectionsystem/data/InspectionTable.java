@@ -18,7 +18,16 @@ public class InspectionTable {
     public static final String COL_DEVICE_ISPUBLISH = "ISPUBLISH";
     public static final String COL_DEVICE_NAME = "DEVICENAME";
 
-    public static String getCreatUSERSQL(){
+    public static final String TBL_NAME_REGISTER = "REGISTER";
+    public static final String COL_REGISTER_ID = "REGISTERID";
+    public static final String COL_REGISTER_DEVICE_ID = "DEIVCEID";
+    public static final String COL_REGISTER_TEMPERATURE = "TEMPERATURE";
+    public static final String COL_REGISTER_PRESSURE = "PRESSURE";
+    public static final String COL_REGISTER_TIME = "REGISTERTIME";
+    public static final String COL_REGISTER_OPERATOR_ACCOUNT = "OPERATORACCOUNT";
+    public static final String COL_REGISTER_OPERATOR_NAME = "OPERATORNAME";
+
+    public static String getCreateUSERSQL(){
         String sql = "CREATE TABLE "
                 + TBL_NAME_USER +"(" + COL_USER_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
                 + COL_USER_ACCOUNT + " TEXT,"
@@ -29,7 +38,7 @@ public class InspectionTable {
         return sql;
     }
 
-    public static String getCreatDEVICESQL(){
+    public static String getCreateDEVICESQL(){
         String sql = "CREATE TABLE "
                 + TBL_NAME_DEVICE +"(" + COL_DEVICE_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
                 + COL_DEVICE_NUMBER + " TEXT,"
@@ -38,6 +47,18 @@ public class InspectionTable {
                 + COL_DEVICE_NAME + " TEXT,"
                 + COL_DEVICE_ISPUBLISH + " INTEGER,"
                 + COL_DEVICE_ADDTIME + " INTEGER"
+                +")";
+        return sql;
+    }
+
+    public static String getCreateREGISTER(){
+        String sql = "CREATE TABLE"
+                + TBL_NAME_REGISTER +"(" + COL_REGISTER_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+                + COL_REGISTER_DEVICE_ID + "INTEGER"
+                + COL_REGISTER_TEMPERATURE + "TEXT"
+                + COL_REGISTER_PRESSURE + "TEXT"
+                + COL_REGISTER_TIME + "INTEGER"
+                + COL_REGISTER_OPERATOR_ACCOUNT + "TEXT"
                 +")";
         return sql;
     }
