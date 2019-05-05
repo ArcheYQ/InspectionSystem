@@ -1,6 +1,8 @@
 package com.example.administrator.inspectionsystem.inspectionsystem.bean;
 
-public class User {
+import java.io.Serializable;
+
+public class User implements Serializable {
 
     /**
      * 密码

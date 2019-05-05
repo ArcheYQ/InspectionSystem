@@ -63,4 +63,22 @@ public class UserDataUtil {
         }
         return aim;
     }
+
+    public List<User> getInspectors(){
+        SQLiteDatabase db = inspectionData.getReadableDatabase();
+        Cursor cursor = db.query(InspectionTable.TBL_NAME_USER, null,InspectionTable.COL_USER_ROLE+" = ? ", new String[]{String.valueOf(Role.INSPECTOR.value)},null,null,null,null);
+        if(cursor.getCount() == 0){
+            return null;
+        }
+        List<User> list = new ArrayList<>();
+        for (cursor.moveToFirst(); !cursor.isAfterLast(); cursor.moveToNext()) {
+            User aim = new User();
+            aim.setRole(Role.getRole(cursor.getInt(cursor.getColumnIndex(InspectionTable.COL_USER_ROLE))));
+            aim.setName(cursor.getString(cursor.getColumnIndex(InspectionTable.COL_USER_NAME)));
+            aim.setPassword(cursor.getString(cursor.getColumnIndex(InspectionTable.COL_USER_PASSWORD)));
+            aim.setAccount(cursor.getString(cursor.getColumnIndex(InspectionTable.COL_USER_ACCOUNT)));
+            list.add(aim);
+        }
+        return list;
+    }
 }
