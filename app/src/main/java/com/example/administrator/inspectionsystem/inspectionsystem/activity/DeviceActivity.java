@@ -6,14 +6,14 @@ import android.view.MenuItem;
 
 import com.example.administrator.inspectionsystem.R;
 
-public class AdviceActivity extends BaseActivity {
+public class DeviceActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_advice);
+        setContentView(R.layout.activity_device);
         bindView();
-        setToolBar(R.id.tb_advice);
+        setToolBar(R.id.tb_device);
         initHome();
     }
 
@@ -23,13 +23,13 @@ public class AdviceActivity extends BaseActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_addadvice,menu);
+        getMenuInflater().inflate(R.menu.menu_adddevice,menu);
         return true;
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.item_addadvice){
-            startActivity(AddAdviceActivity.class,null,false);
+        if (item.getItemId() == R.id.item_adddevice){
+            startActivity(AddDeviceActivity.class,null,false);
             return true;
         }
         return super.onOptionsItemSelected(item);

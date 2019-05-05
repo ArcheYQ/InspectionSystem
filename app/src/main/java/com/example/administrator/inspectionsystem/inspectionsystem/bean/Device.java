@@ -1,6 +1,6 @@
 package com.example.administrator.inspectionsystem.inspectionsystem.bean;
 
-public class Advice {
+public class Device {
 
     /**
      * 编号
@@ -30,7 +30,7 @@ public class Advice {
      * 是否公开
      */
     private int isPublic;
-    public Advice(){
+    public Device(){
         isPublic = 1;
     }
     public String getNumber() {

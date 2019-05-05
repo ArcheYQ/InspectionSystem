@@ -2,8 +2,8 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/item_addadvice"
+        android:id="@+id/item_adddevice"
         android:title="新增"
         app:showAsAction="always"
-        android:icon="@drawable/add_advice"/>
+        android:icon="@drawable/add_device"/>
 </menu>

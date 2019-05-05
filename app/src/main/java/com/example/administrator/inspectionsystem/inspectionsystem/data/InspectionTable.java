@@ -9,14 +9,14 @@ public class InspectionTable {
     public static final String COL_USER_ROLE = "ROLE";
     public static final String COL_USER_NAME = "NAME";
 
-    public static final String TBL_NAME_ADVICE = "ADVICE";
-    public static final String COL_ADVICE_ID = "ADVICEID";
-    public static final String COL_ADVICE_NUMBER = "NUMBER";
-    public static final String COL_ADVICE_LOCATION = "LOCATION";
-    public static final String COL_ADVICE_ADMACCOUNT = "ADMACCOUNT";
-    public static final String COL_ADVICE_ADDTIME = "ADDTIME";
-    public static final String COL_ADVICE_ISPUBLISH = "ISPUBLISH";
-    public static final String COL_ADVICE_NAME = "ADVICENAME";
+    public static final String TBL_NAME_DEVICE = "DEVICE";
+    public static final String COL_DEVICE_ID = "DEVICEID";
+    public static final String COL_DEVICE_NUMBER = "NUMBER";
+    public static final String COL_DEVICE_LOCATION = "LOCATION";
+    public static final String COL_DEVICE_ADMACCOUNT = "ADMACCOUNT";
+    public static final String COL_DEVICE_ADDTIME = "ADDTIME";
+    public static final String COL_DEVICE_ISPUBLISH = "ISPUBLISH";
+    public static final String COL_DEVICE_NAME = "DEVICENAME";
 
     public static String getCreatUSERSQL(){
         String sql = "CREATE TABLE "
@@ -29,15 +29,15 @@ public class InspectionTable {
         return sql;
     }
 
-    public static String getCreatADVICESQL(){
+    public static String getCreatDEVICESQL(){
         String sql = "CREATE TABLE "
-                + TBL_NAME_ADVICE +"(" + COL_ADVICE_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
-                + COL_ADVICE_NUMBER + " TEXT,"
-                + COL_ADVICE_LOCATION + " TEXT,"
-                + COL_ADVICE_ADMACCOUNT + " TEXT,"
-                + COL_ADVICE_NAME + " TEXT,"
-                + COL_ADVICE_ISPUBLISH + " INTEGER,"
-                + COL_ADVICE_ADDTIME + " INTEGER"
+                + TBL_NAME_DEVICE +"(" + COL_DEVICE_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+                + COL_DEVICE_NUMBER + " TEXT,"
+                + COL_DEVICE_LOCATION + " TEXT,"
+                + COL_DEVICE_ADMACCOUNT + " TEXT,"
+                + COL_DEVICE_NAME + " TEXT,"
+                + COL_DEVICE_ISPUBLISH + " INTEGER,"
+                + COL_DEVICE_ADDTIME + " INTEGER"
                 +")";
         return sql;
     }

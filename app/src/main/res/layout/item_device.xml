@@ -23,7 +23,7 @@
             android:layout_height="20dp"
             android:gravity="left"
             android:textSize="15sp"
-            android:id="@+id/tv_item_advice_number"
+            android:id="@+id/tv_item_device_number"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"
@@ -33,7 +33,7 @@
             android:layout_height="20dp"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="5dp"
-            android:id="@+id/tv_item_advice_name"
+            android:id="@+id/tv_item_device_name"
             android:layout_marginBottom="5dp"
             android:text="设备名称：啦啦啦"
             />
@@ -42,7 +42,7 @@
             android:layout_height="20dp"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="5dp"
-            android:id="@+id/tv_item_advice_admaccount"
+            android:id="@+id/tv_item_device_admaccount"
             android:layout_marginBottom="5dp"
             android:text="添加人员：admin1"
             />
@@ -51,7 +51,7 @@
             android:layout_height="20dp"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="5dp"
-            android:id="@+id/tv_item_advice_addtime"
+            android:id="@+id/tv_item_device_addtime"
             android:layout_marginBottom="5dp"
             android:text="添加时间：admin1"
             />
@@ -60,7 +60,7 @@
             android:layout_height="20dp"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="5dp"
-            android:id="@+id/tv_item_advice_location"
+            android:id="@+id/tv_item_device_location"
             android:layout_marginBottom="5dp"
             android:text="设备位置：我不知道"
             />
@@ -76,13 +76,13 @@
                 android:layout_height="20dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="5dp"
-                android:id="@+id/tv_item_advice_public"
+                android:id="@+id/tv_item_device_public"
                 android:visibility="gone"
                 android:layout_marginBottom="5dp"
                 android:text="设备未公开"
                 />
             <Button
-                android:id="@+id/bt_item_advice"
+                android:id="@+id/bt_item_device"
                 android:layout_width="160dp"
                 android:layout_height="40dp"
                 android:layout_alignParentRight="true"

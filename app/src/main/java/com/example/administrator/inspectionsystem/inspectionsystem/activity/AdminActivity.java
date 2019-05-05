@@ -11,7 +11,7 @@ import com.example.administrator.inspectionsystem.inspectionsystem.bean.User;
 
 public class AdminActivity extends BaseActivity implements View.OnClickListener {
     Button btAdmUser;
-    Button btAdmAdvice;
+    Button btAdmDevice;
     Button btAdmAdd;
     Button btAdmBack;
     TextView tvAdmUserName;
@@ -28,13 +28,13 @@ public class AdminActivity extends BaseActivity implements View.OnClickListener 
 
     private void bindView() {
         btAdmAdd = findViewById(R.id.bt_adm_add);
-        btAdmAdvice = findViewById(R.id.bt_adm_device);
+        btAdmDevice = findViewById(R.id.bt_adm_device);
         btAdmBack = findViewById(R.id.bt_adm_back);
         btAdmUser = findViewById(R.id.bt_adm_user);
         tvAdmUserName = findViewById(R.id.tv_adm_username);
         btAdmUser.setOnClickListener(this);
         btAdmAdd.setOnClickListener(this);
-        btAdmAdvice.setOnClickListener(this);
+        btAdmDevice.setOnClickListener(this);
         btAdmBack.setOnClickListener(this);
         tvAdmUserName.setText(curUser.getName()+",欢迎您。");
     }

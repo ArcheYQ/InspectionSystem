@@ -6,7 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
     <android.support.v7.widget.Toolbar
-        android:id="@+id/tb_addAdvice"
+        android:id="@+id/tb_addDevice"
         android:background="#FFFFFF"
         android:elevation="5dp"
         android:layout_width="match_parent"
@@ -26,7 +26,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
         <EditText
-            android:id="@+id/et_addAdvice_number"
+            android:id="@+id/et_addDevice_number"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_marginLeft="5dp"
@@ -40,7 +40,7 @@
             android:layout_height="3px"
             android:layout_marginLeft="5dp" />
         <EditText
-            android:id="@+id/et_addadvice_name"
+            android:id="@+id/et_adddevice_name"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_marginLeft="5dp"
@@ -54,7 +54,7 @@
             android:layout_height="3px"
             android:layout_marginLeft="5dp" />
         <EditText
-            android:id="@+id/et_addAdvice_location"
+            android:id="@+id/et_addDevice_location"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_marginLeft="5dp"
@@ -92,7 +92,7 @@
                 />
         </RelativeLayout>
         <Button
-            android:id="@+id/bt_addAdvice"
+            android:id="@+id/bt_addDevice"
             android:layout_width="160dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
