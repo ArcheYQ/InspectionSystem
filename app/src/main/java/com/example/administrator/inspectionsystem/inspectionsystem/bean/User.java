@@ -1,8 +1,7 @@
 package com.example.administrator.inspectionsystem.inspectionsystem.bean;
 
 public class User {
-    public static final int ROLE_ADMINISTRATOR = 1;
-    public static final int ROLE_INSPECTOR = 0;
+
     /**
      * 密码
      */
@@ -18,21 +17,22 @@ public class User {
     /**
      * 角色
      */
-    private int role;
+    private Role role;
 
     public User(){
-        this.role = ROLE_INSPECTOR;
+        this.role = Role.INSPECTOR;
     }
 
 
     public String getPassword() {
         return password;
     }
-    public int getRole() {
+
+    public Role getRole() {
         return role;
     }
 
-    public void setRole(int role) {
+    public void setRole(Role role) {
         this.role = role;
     }
 

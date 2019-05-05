@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import com.example.administrator.inspectionsystem.inspectionsystem.bean.Role;
 import com.example.administrator.inspectionsystem.inspectionsystem.bean.User;
 import com.example.administrator.inspectionsystem.inspectionsystem.data.InspectionData;
 import com.example.administrator.inspectionsystem.inspectionsystem.data.InspectionTable;
@@ -23,7 +24,7 @@ public class UserDataUtil {
         list = new ArrayList<>();
         for (int i = 1; i <= 3; i++) {
             User adm = new User();
-            adm.setRole(User.ROLE_ADMINISTRATOR);
+            adm.setRole(Role.ADMIN);
             adm.setAccount("admin"+i);
             adm.setPassword("admin"+i);
             adm.setName("admin"+i);
@@ -31,7 +32,7 @@ public class UserDataUtil {
         }
         for (int i = 1; i <= 10; i++) {
             User ins = new User();
-            ins.setRole(User.ROLE_INSPECTOR);
+            ins.setRole(Role.INSPECTOR);
             ins.setAccount("ins"+i);
             ins.setPassword("ins"+i);
             ins.setName("inspector"+i);
@@ -42,7 +43,7 @@ public class UserDataUtil {
             contentValues.put(InspectionTable.COL_USER_ACCOUNT,user.getAccount());
             contentValues.put(InspectionTable.COL_USER_NAME,user.getName());
             contentValues.put(InspectionTable.COL_USER_PASSWORD,user.getPassword());
-            contentValues.put(InspectionTable.COL_USER_ROLE,user.getRole());
+            contentValues.put(InspectionTable.COL_USER_ROLE,user.getRole().value);
             db.insert(InspectionTable.TBL_NAME_USER,null,contentValues);
         }
     }
@@ -55,7 +56,7 @@ public class UserDataUtil {
             return null;
         }
         for (cursor.moveToFirst(); !cursor.isAfterLast(); cursor.moveToNext()) {
-            aim.setRole(cursor.getInt(cursor.getColumnIndex(InspectionTable.COL_USER_ROLE)));
+            aim.setRole(Role.getRole(cursor.getInt(cursor.getColumnIndex(InspectionTable.COL_USER_ROLE))));
             aim.setName(cursor.getString(cursor.getColumnIndex(InspectionTable.COL_USER_NAME)));
             aim.setPassword(cursor.getString(cursor.getColumnIndex(InspectionTable.COL_USER_PASSWORD)));
             aim.setAccount(cursor.getString(cursor.getColumnIndex(InspectionTable.COL_USER_ACCOUNT)));
