@@ -52,13 +52,14 @@ public class InspectionTable {
     }
 
     public static String getCreateREGISTER(){
-        String sql = "CREATE TABLE"
+        String sql = "CREATE TABLE "
                 + TBL_NAME_REGISTER +"(" + COL_REGISTER_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
-                + COL_REGISTER_DEVICE_ID + "INTEGER"
-                + COL_REGISTER_TEMPERATURE + "TEXT"
-                + COL_REGISTER_PRESSURE + "TEXT"
-                + COL_REGISTER_TIME + "INTEGER"
-                + COL_REGISTER_OPERATOR_ACCOUNT + "TEXT"
+                + COL_REGISTER_DEVICE_ID + " INTEGER,"
+                + COL_REGISTER_TEMPERATURE + " TEXT,"
+                + COL_REGISTER_PRESSURE + " TEXT,"
+                + COL_REGISTER_TIME + " INTEGER,"
+                + COL_REGISTER_OPERATOR_NAME + " TEXT,"
+                + COL_REGISTER_OPERATOR_ACCOUNT + " TEXT"
                 +")";
         return sql;
     }
