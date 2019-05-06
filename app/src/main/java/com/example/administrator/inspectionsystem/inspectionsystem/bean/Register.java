@@ -1,47 +1,39 @@
 package com.example.administrator.inspectionsystem.inspectionsystem.bean;
 
-@TableName("register")
 public class Register {
     /**
      * 编号
      */
-    @TableColumn(field = "id", autoIncrease = true, primary = true)
     private int id;
 
     /**
      * 设备ID
      */
-    @TableColumn(field = "device_id")
     private int deviceId;
 
     /**
      * 温度
      */
-    @TableColumn(field = "temperature")
     private String temperature;
 
     /**
      * 压强
      */
-    @TableColumn(field = "pressure")
     private String pressure;
 
     /**
      * 登记时间
      */
-    @TableColumn(field = "time")
     private long time;
 
     /**
      * 操作人账号
      */
-    @TableColumn(field = "operatorAccount")
     private String operatorAccount;
 
     /**
      * 操作人姓名
      */
-    @TableColumn(field = "operatorName")
     private String operatorName;
 
     public String getComment() {
@@ -55,7 +47,6 @@ public class Register {
     /**
      * 描述
      */
-    @TableColumn(field = "comment")
     private String comment;
     public int getId() {
         return id;
