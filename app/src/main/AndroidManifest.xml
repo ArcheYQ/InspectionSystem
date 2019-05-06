@@ -42,7 +42,7 @@
         <activity android:name=".inspectionsystem.activity.EditDeviceActivity" />
         <activity android:name=".inspectionsystem.activity.RegisterActivity" />
         <activity android:name=".inspectionsystem.activity.DetailRegisterActivity" />
-        <activity android:name=".inspectionsystem.activity.AddRegisterActivity"></activity>
+        <activity android:name=".inspectionsystem.activity.AddRegisterActivity" />
     </application>
 
 </manifest>

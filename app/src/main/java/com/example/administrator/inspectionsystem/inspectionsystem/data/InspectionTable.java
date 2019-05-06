@@ -26,6 +26,7 @@ public class InspectionTable {
     public static final String COL_REGISTER_TIME = "REGISTERTIME";
     public static final String COL_REGISTER_OPERATOR_ACCOUNT = "OPERATORACCOUNT";
     public static final String COL_REGISTER_OPERATOR_NAME = "OPERATORNAME";
+    public static final String COL_REGISTER_COMMENT = "COMMENT";
 
     public static String getCreateUSERSQL(){
         String sql = "CREATE TABLE "
@@ -59,6 +60,7 @@ public class InspectionTable {
                 + COL_REGISTER_PRESSURE + " TEXT,"
                 + COL_REGISTER_TIME + " INTEGER,"
                 + COL_REGISTER_OPERATOR_NAME + " TEXT,"
+                + COL_REGISTER_COMMENT + " TEXT,"
                 + COL_REGISTER_OPERATOR_ACCOUNT + " TEXT"
                 +")";
         return sql;

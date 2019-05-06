@@ -44,6 +44,19 @@ public class Register {
     @TableColumn(field = "operatorName")
     private String operatorName;
 
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
+
+    /**
+     * 描述
+     */
+    @TableColumn(field = "comment")
+    private String comment;
     public int getId() {
         return id;
     }

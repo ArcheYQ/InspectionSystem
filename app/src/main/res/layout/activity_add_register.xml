@@ -46,7 +46,19 @@
             android:gravity="center"
             android:hint="设备压强"
             android:textSize="15dp" />
-
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="3px"
+            android:layout_marginLeft="5dp" />
+        <EditText
+            android:id="@+id/et_addRegister_comment"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="5dp"
+            android:background="#fff"
+            android:gravity="center"
+            android:hint="特殊描述"
+            android:textSize="15dp" />
         <Button
             android:id="@+id/bt_addRegister"
             android:layout_width="160dp"

@@ -15,6 +15,7 @@ import com.example.administrator.inspectionsystem.inspectionsystem.bean.Register
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.TimeZone;
 
 public class RegisterAdapter extends RecyclerView.Adapter<RegisterAdapter.RegisterViewHolder> {
     List<Register> list;
@@ -47,13 +48,14 @@ public class RegisterAdapter extends RecyclerView.Adapter<RegisterAdapter.Regist
         TextView tvPressure;
         TextView tvAccount;
         TextView tvTime;
-
+        TextView tvComment;
         public RegisterViewHolder(View itemView) {
             super(itemView);
             tvTemperature = itemView.findViewById(R.id.tv_item_register_temperature);
             tvPressure = itemView.findViewById(R.id.tv_item_register_pressure);
             tvAccount = itemView.findViewById(R.id.tv_item_register_operatorName);
             tvTime = itemView.findViewById(R.id.tv_item_register_time);
+            tvComment = itemView.findViewById(R.id.tv_item_register_comment);
         }
 
         public void load(final Register register) {
@@ -61,6 +63,7 @@ public class RegisterAdapter extends RecyclerView.Adapter<RegisterAdapter.Regist
             tvPressure.setText("设备压强：" + register.getPressure().toString());
             tvAccount.setText("操作人员：" + register.getOperatorName().toString());
             tvTime.setText("操作时间：" + formatTime("yyyy-MM-dd HH:mm", register.getTime()));
+            tvComment.setText("特殊描述：" + register.getComment().toString());
         }
     }
     public static String formatTime(String format, long time)

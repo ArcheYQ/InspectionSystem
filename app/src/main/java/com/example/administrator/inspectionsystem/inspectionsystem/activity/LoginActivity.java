@@ -82,11 +82,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                     break;
                 }
                 setCurUser(curUser);
-                if(curRole == Role.ADMIN.value)  {
-                    startActivity(AdminActivity.class,null,true);
-                }else {
-
-                }
+                startActivity(AdminActivity.class,null,true);
                 finish();
                 break;
         }

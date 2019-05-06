@@ -28,6 +28,7 @@ public class RegisterDataUtil {
         contentValues.put(InspectionTable.COL_REGISTER_TIME,register.getTime());
         contentValues.put(InspectionTable.COL_REGISTER_TEMPERATURE,register.getTemperature());
         contentValues.put(InspectionTable.COL_REGISTER_OPERATOR_NAME,register.getOperatorName());
+        contentValues.put(InspectionTable.COL_REGISTER_COMMENT,register.getComment());
         db.insert(InspectionTable.TBL_NAME_REGISTER,null,contentValues);
     }
 
@@ -44,7 +45,8 @@ public class RegisterDataUtil {
             aim.setOperatorName(cursor.getString(cursor.getColumnIndex(InspectionTable.COL_REGISTER_OPERATOR_NAME)));
             aim.setTemperature(cursor.getString(cursor.getColumnIndex(InspectionTable.COL_REGISTER_TEMPERATURE)));
             aim.setPressure(cursor.getString(cursor.getColumnIndex(InspectionTable.COL_REGISTER_PRESSURE)));
-            aim.setTime(cursor.getInt(cursor.getColumnIndex(InspectionTable.COL_REGISTER_TIME)));
+            aim.setTime(cursor.getLong(cursor.getColumnIndex(InspectionTable.COL_REGISTER_TIME)));
+            aim.setComment(cursor.getString(cursor.getColumnIndex(InspectionTable.COL_REGISTER_COMMENT)));
             list.add(aim);
         }
         return list;

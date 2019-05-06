@@ -51,6 +51,7 @@ public class UserDataUtil {
     public User getUserFromAccount(String account){
         SQLiteDatabase db = inspectionData.getReadableDatabase();
         Cursor cursor = db.query(InspectionTable.TBL_NAME_USER, null,InspectionTable.COL_USER_ACCOUNT+" = ? ", new String[]{account},null,null,null,null);
+        cursor.moveToFirst();
         return assemble(cursor);
     }
 

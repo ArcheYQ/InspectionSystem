@@ -6,6 +6,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.administrator.inspectionsystem.R;
+import com.example.administrator.inspectionsystem.inspectionsystem.bean.Role;
 import com.example.administrator.inspectionsystem.inspectionsystem.bean.User;
 
 public class AdminActivity extends BaseActivity implements View.OnClickListener {
@@ -36,6 +37,12 @@ public class AdminActivity extends BaseActivity implements View.OnClickListener 
         btAdmDevice.setOnClickListener(this);
         btAdmBack.setOnClickListener(this);
         tvAdmUserName.setText(curUser.getName()+",欢迎您。");
+        if (getCurUser().getRole().equals(Role.ADMIN)){
+            btAdmDevice.setVisibility(View.VISIBLE);
+            btAdmDevice.setClickable(true);
+            btAdmUser.setVisibility(View.VISIBLE);
+            btAdmUser.setClickable(true);
+        }
     }
 
     @Override

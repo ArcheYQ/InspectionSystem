@@ -84,6 +84,7 @@ public class UserActivity extends BaseActivity implements View.OnClickListener {
     @Override
     protected void onResume() {
         super.onResume();
+        curUser = userDataUtil.getUserFromAccount(curUser.getAccount());
         userAdapter.setList(userDataUtil.getInspectors());
     }
 }
