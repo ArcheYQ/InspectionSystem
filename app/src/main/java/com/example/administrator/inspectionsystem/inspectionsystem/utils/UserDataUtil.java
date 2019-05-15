@@ -20,6 +20,10 @@ public class UserDataUtil {
         this.inspectionData = new InspectionData(context);
        }
 
+    /**
+     * 在数据库表格建立完之后被调用，用于初始化时创建多个默认账号
+      * @param db
+     */
     public static void createUserData(SQLiteDatabase db){
         list = new ArrayList<>();
         for (int i = 1; i <= 3; i++) {
@@ -80,6 +84,11 @@ public class UserDataUtil {
         db.update(InspectionTable.TBL_NAME_USER,contentValues,whereClause,new String[]{user.getAccount()});
     }
 
+    /**
+     * 进行数据的拼装
+     * @param user
+     * @return
+     */
     private static ContentValues assemble(User user){
         ContentValues contentValues = new ContentValues();
         contentValues.put(InspectionTable.COL_USER_ACCOUNT,user.getAccount());
@@ -89,6 +98,11 @@ public class UserDataUtil {
         return contentValues;
     }
 
+    /**
+     * 进行数据的拼装
+     * @param cursor
+     * @return
+     */
     private static User assemble(Cursor cursor){
         User aim = new User();
         if(cursor.getCount() == 0){

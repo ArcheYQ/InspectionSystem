@@ -31,6 +31,10 @@ public class RegisterActivity extends BaseActivity {
         rvRegister.setItemAnimator(new DefaultItemAnimator());
         rvRegister.setLayoutManager(new LinearLayoutManager(this));
     }
+
+    /**
+     * 重新加载界面时，可能数据已经发生改变，需要刷新视图
+     */
     @Override
     protected void onResume() {
         super.onResume();

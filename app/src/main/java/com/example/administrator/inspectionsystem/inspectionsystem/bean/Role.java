@@ -1,5 +1,8 @@
 package com.example.administrator.inspectionsystem.inspectionsystem.bean;
 
+/**
+ * 自定义一个枚举类，用于保存角色的两种类型
+ */
 public enum Role {
     INSPECTOR("巡检员",0), ADMIN("管理员",1);
 

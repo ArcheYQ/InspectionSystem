@@ -1,8 +1,6 @@
 package com.example.administrator.inspectionsystem.inspectionsystem.activity;
 
-import android.Manifest;
 import android.app.Activity;
-import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -11,33 +9,21 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.annotation.LayoutRes;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 import android.widget.Toast;
-
 
 import com.example.administrator.inspectionsystem.R;
 import com.example.administrator.inspectionsystem.inspectionsystem.bean.Role;
 import com.example.administrator.inspectionsystem.inspectionsystem.bean.User;
 
-import java.util.ArrayList;
-import java.util.List;
-
 
 public class BaseActivity extends AppCompatActivity {
-    /**
-     * 管理所有的activity资源对象
-     */
-    private static List<BaseActivity> activities;
     /**
      * toolbar
      */
@@ -45,33 +31,14 @@ public class BaseActivity extends AppCompatActivity {
 
     public Activity mActivity;
 
-    private Dialog progressDialog;
-
     private static final String PACKAGE_URL_SCHEME = "package:";//权限方案
 
     public static final int PERMISSION_DENIEG = 1;//权限不足，权限被拒绝的时候
 
-    private static final int REQUEST_CODE_PICK_IMAGE = 3;
-
-    @Override
-    public void setContentView(@LayoutRes int layoutResID) {
-        super.setContentView(layoutResID);
-        mActivity = this;
-    }
-
-    @Override
-    public void setContentView(View view) {
-        super.setContentView(view);
-        mActivity = this;
-    }
-
-    @Override
-    public void setContentView(View view, ViewGroup.LayoutParams params) {
-        super.setContentView(view, params);
-        mActivity = this;
-
-    }
-
+    /**
+     * 初始化菜单栏
+     * @param toolId
+     */
     public void setToolBar(int toolId){
         Toolbar toolbar = (Toolbar) findViewById(toolId);
         if (toolbar != null) {
@@ -84,6 +51,11 @@ public class BaseActivity extends AppCompatActivity {
             actionBar.setDisplayShowTitleEnabled(false);
         }
     }
+
+    /**
+     * 将该角色存到SharedPreferences中，方便随时查看当前登录用户
+     * @param user
+     */
     public void setCurUser(User user){
         SharedPreferences userSettings = getSharedPreferences("curUser", 0);
         SharedPreferences.Editor editor = userSettings.edit();
@@ -93,6 +65,11 @@ public class BaseActivity extends AppCompatActivity {
         editor.putString("password",user.getPassword());
         editor.commit();
     }
+
+    /**
+     * 获得当前登录的账号信息
+     * @return
+     */
     public User getCurUser(){
         User cur = new User();
         SharedPreferences userSettings= getSharedPreferences("curUser", 0);
@@ -102,25 +79,20 @@ public class BaseActivity extends AppCompatActivity {
         cur.setRole(Role.getRole(userSettings.getInt("ROLE",1)));
         return cur;
     }
+
+    /**
+     * 退出登录时，清空当前角色的登录信息
+     */
     public void cleanUser(){
         SharedPreferences userSettings= getSharedPreferences("curUser", 0);
         SharedPreferences.Editor editor = userSettings.edit();
         editor.clear();
         editor.commit();
     }
-    public void initToolBarAsHome(String title) {
-        if (mToolbar != null) {
-            setSupportActionBar(mToolbar);
-            mToolbar.setTitle(title);
-        }
-        ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.setHomeAsUpIndicator(R.mipmap.black_back);
-            actionBar.setDisplayHomeAsUpEnabled(true);
-            actionBar.setTitle(title);
-        }
-    }
 
+    /**
+     * 设置返回上一页的箭头（页面左上角）
+     */
     public void initHome(){
         if (mToolbar != null) {
             setSupportActionBar(mToolbar);
@@ -132,169 +104,13 @@ public class BaseActivity extends AppCompatActivity {
             actionBar.setTitle("");
         }
     }
-    public void initWhiteHome(){
-        if (mToolbar != null) {
-            setSupportActionBar(mToolbar);
-        }
-        ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.setHomeAsUpIndicator(R.mipmap.white_back);
-            actionBar.setDisplayHomeAsUpEnabled(true);
-            actionBar.setTitle("");
-        }
-    }
-
-    public void initToolBarText(int tvId,String title,int res) {
-        if (mToolbar != null) {
-            setSupportActionBar(mToolbar);
-            TextView toolbarTitle = (TextView) mToolbar.findViewById(tvId);
-            toolbarTitle.setText(title);
-
-        }
-        ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.setDisplayHomeAsUpEnabled(true);
-            actionBar.setDisplayShowTitleEnabled(false);
-            actionBar.setHomeAsUpIndicator(res);
-        }
-    }
 
 
-    public void initToolBarText(int tvId,String title) {
-        if (mToolbar != null) {
-            setSupportActionBar(mToolbar);
-            TextView toolbarTitle = (TextView) mToolbar.findViewById(tvId);
-            toolbarTitle.setText(title);
-
-        }
-        ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.setDisplayHomeAsUpEnabled(true);
-            actionBar.setDisplayShowTitleEnabled(false);
-
-        }
-    }
-
-
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-
-            case android.R.id.home:
-                super.onBackPressed();//返回
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-
-    }
-
-    public void toastShow(int resId) {
-        Toast.makeText(mActivity, resId, Toast.LENGTH_SHORT).show();
-    }
-
-    public void toastShow(String resId) {
-        Toast.makeText(mActivity, resId, Toast.LENGTH_SHORT).show();
-    }
-
-    public void log(String text){
-        Log.i("here------",text);
-    }
-
-    public void addActivity(BaseActivity baseActivity){
-        if (activities==null){
-            activities=new ArrayList<>();
-        }
-        activities.add(baseActivity);
-    }
-
-    public void finishAll(){
-        for (BaseActivity activity:activities){
-            if (activity!=null){
-                activity.finish();
-            }
-        }
-    }
-
-    public void finishPreAll(){
-        for (int i = 0; i < activities.size()-2; i++) {
-            activities.get(i).finish();
-        }
-    }
-
-
-
-
-    public boolean getCcamra(){
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
-                != PackageManager.PERMISSION_GRANTED) {
-            //申请WRITE_EXTERNAL_STORAGE权限
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, 1);
-            return false;
-        } else {
-            return true;
-        }
-    }
-
-    public void getContracts(){
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_CONTACTS)
-                != PackageManager.PERMISSION_GRANTED) {
-            //申请权限  第二个参数是一个 数组 说明可以同时申请多个权限
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_CONTACTS}, 1);
-        } else {
-            return;
-        }
-    }
-
-    public boolean getStorage(){
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
-                != PackageManager.PERMISSION_GRANTED) {
-            //申请权限  第二个参数是一个 数组 说明可以同时申请多个权限
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
-            return false;
-        } else {
-            return true;
-        }
-    }
-
-
-    public void getRecord(){
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO)
-                != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.RECORD_AUDIO}, 1);
-        } else {
-            return;
-        }
-    }
-
-    public boolean getLocationPre(){
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)
-                != PackageManager.PERMISSION_GRANTED ){
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, 1);
-            return false;
-        }else{
-            return true;
-        }
-
-    }
-
-    public void getPhone(){
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE)
-                != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CALL_PHONE}, 1);
-
-        } else {
-            return;
-        }
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        showMissingPermissionDialog(requestCode, grantResults);
-    }
-
+    /**
+     * 当缺少系统权限时，对用户进行提示
+     * @param requestCode
+     * @param grantResults
+     */
     private void showMissingPermissionDialog(int requestCode, int[] grantResults) {
         if (requestCode == 1) {
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
@@ -330,7 +146,12 @@ public class BaseActivity extends AppCompatActivity {
     }
 
 
-
+    /**
+     * 自定义打开另外一个活动的函数，调用更加方便
+     * @param target
+     * @param bundle
+     * @param finish
+     */
     public void startActivity(Class<? extends Activity> target, Bundle bundle, boolean finish) {
         Intent intent = new Intent();
         intent.setClass(this, target);
@@ -341,7 +162,42 @@ public class BaseActivity extends AppCompatActivity {
             finish();
     }
 
+    /**
+     * 保存权限请求的结果
+     * @param requestCode
+     * @param permissions
+     * @param grantResults
+     */
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        showMissingPermissionDialog(requestCode, grantResults);
+    }
 
+    @Override
+    public void setContentView(@LayoutRes int layoutResID) {
+        super.setContentView(layoutResID);
+        mActivity = this;
+    }
 
+    @Override
+    public void setContentView(View view) {
+        super.setContentView(view);
+        mActivity = this;
+    }
 
+    @Override
+    public void setContentView(View view, ViewGroup.LayoutParams params) {
+        super.setContentView(view, params);
+        mActivity = this;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            super.onBackPressed();//返回
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 }

@@ -13,11 +13,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 
+/**
+ * 封装了操作数据库的一系列操作，增删改查等
+ */
 public class DeviceDataUtil {
     private InspectionData inspectionData;
     public DeviceDataUtil(Context context){
         this.inspectionData = new InspectionData(context);
     }
+
+    /**
+     * 增加设备
+     * @param device
+     */
     public void addDevice(Device device){
         SQLiteDatabase db = inspectionData.getReadableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -30,6 +38,11 @@ public class DeviceDataUtil {
         db.insert(InspectionTable.TBL_NAME_DEVICE,null,contentValues);
     }
 
+    /**
+     * 获得所有设备
+     * @param isAdm 是否为管理员，只有管理员才可以看到未公开的设备
+     * @return
+     */
     public List<Device> getDevices(boolean isAdm){
         SQLiteDatabase db = inspectionData.getReadableDatabase();
         Cursor cursor;
@@ -52,6 +65,11 @@ public class DeviceDataUtil {
         }
         return list;
     }
+
+    /**
+     * 编辑设备信息
+     * @param device
+     */
     public void editDevice(Device device) {
         SQLiteDatabase db=inspectionData.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -60,6 +78,11 @@ public class DeviceDataUtil {
         String whereClause = InspectionTable.COL_DEVICE_ID+"=?" ;
         db.update(InspectionTable.TBL_NAME_DEVICE,contentValues,whereClause,new String[]{device.getId()+""});
     }
+
+    /**
+     * 删除设备
+     * @param device
+     */
     public void deleteDevice(Device device) {
         SQLiteDatabase db=inspectionData.getWritableDatabase();
         db.delete(InspectionTable.TBL_NAME_DEVICE,InspectionTable.COL_DEVICE_ID+"=?",new String[]{device.getId()+""});

@@ -1,5 +1,9 @@
 package com.example.administrator.inspectionsystem.inspectionsystem.data;
 
+/**
+ * 类中的成员变量为 数据库表格对应的表名和字段名
+ * 类中的成员函数为 创建数据库表格对应SQL语句
+ */
 public class InspectionTable {
 
     public static final String TBL_NAME_USER = "USER";
@@ -28,6 +32,10 @@ public class InspectionTable {
     public static final String COL_REGISTER_OPERATOR_NAME = "OPERATORNAME";
     public static final String COL_REGISTER_COMMENT = "COMMENT";
 
+    /**
+     * 创建表格的SQL语句
+     * @return
+     */
     public static String getCreateUSERSQL(){
         String sql = "CREATE TABLE "
                 + TBL_NAME_USER +"(" + COL_USER_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
@@ -39,6 +47,10 @@ public class InspectionTable {
         return sql;
     }
 
+    /**
+     * 创建表格的SQL语句
+     * @return
+     */
     public static String getCreateDEVICESQL(){
         String sql = "CREATE TABLE "
                 + TBL_NAME_DEVICE +"(" + COL_DEVICE_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
@@ -52,6 +64,10 @@ public class InspectionTable {
         return sql;
     }
 
+    /**
+     * 创建表格的SQL语句
+     * @return
+     */
     public static String getCreateREGISTER(){
         String sql = "CREATE TABLE "
                 + TBL_NAME_REGISTER +"(" + COL_REGISTER_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"

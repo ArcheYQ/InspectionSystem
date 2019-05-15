@@ -21,6 +21,7 @@ public class AdminActivity extends BaseActivity implements View.OnClickListener 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin);
+        // 获得当前登录用户的信息
         curUser = getCurUser();
         bindView();
 
@@ -37,6 +38,7 @@ public class AdminActivity extends BaseActivity implements View.OnClickListener 
         btAdmDevice.setOnClickListener(this);
         btAdmBack.setOnClickListener(this);
         tvAdmUserName.setText(curUser.getName()+",欢迎您。");
+        // 如果角色是ADMIN，才具有"管理设备"按钮
         if (getCurUser().getRole().equals(Role.ADMIN)){
             btAdmDevice.setVisibility(View.VISIBLE);
             btAdmDevice.setClickable(true);

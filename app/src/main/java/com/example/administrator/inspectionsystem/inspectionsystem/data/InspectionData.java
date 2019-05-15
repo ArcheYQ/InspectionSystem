@@ -21,6 +21,10 @@ public class InspectionData extends SQLiteOpenHelper {
         super(context, name, factory, version, errorHandler);
     }
 
+    /**
+     * 在数据库首次运行时自动调用，创建表格
+     * @param db
+     */
     @Override
     public void onCreate(SQLiteDatabase db) {
         String NewSQL = InspectionTable.getCreateUSERSQL();

@@ -33,11 +33,22 @@ public class DeviceActivity extends BaseActivity {
         rvDevice.setLayoutManager(new LinearLayoutManager(this));
     }
 
+    /**
+     * 在菜单栏中添加"新增设备"按钮
+     * @param menu
+     * @return
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_adddevice,menu);
         return true;
     }
+
+    /**
+     * 当"新增设备"被选中时触发的事件
+     * @param item
+     * @return
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.item_adddevice){
@@ -47,6 +58,9 @@ public class DeviceActivity extends BaseActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * 重新加载界面时，可能数据已经发生改变，需要刷新视图
+     */
     @Override
     protected void onResume() {
         super.onResume();

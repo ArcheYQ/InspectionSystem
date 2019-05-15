@@ -25,6 +25,7 @@ public class EditDeviceActivity extends BaseActivity implements View.OnClickList
         setContentView(R.layout.activity_edit_device);
         setToolBar(R.id.tb_editDevice);
         initHome();
+        // 通过getIntent获得上一个活动通过bundle传递过来的数据
         device = (Device) getIntent().getSerializableExtra("editDevice");
         deviceDataUtil = new DeviceDataUtil(this);
         bindView();

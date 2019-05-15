@@ -18,6 +18,11 @@ public class AddRegisterActivity extends BaseActivity implements View.OnClickLis
     Button btAddRegister;
     Device device;
     RegisterDataUtil registerDataUtil;
+
+    /**
+     * 创建活动时进行初始化
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,6 +34,9 @@ public class AddRegisterActivity extends BaseActivity implements View.OnClickLis
         registerDataUtil = new RegisterDataUtil(this);
     }
 
+    /**
+     * 将组件与视图进行绑定
+     */
     private void bindView() {
         etAddRegisterTemperature = findViewById(R.id.et_addRegister_temperature);
         etAddRegisterPressure = findViewById(R.id.et_addRegister_pressure);
@@ -37,9 +45,14 @@ public class AddRegisterActivity extends BaseActivity implements View.OnClickLis
         btAddRegister.setOnClickListener(this);
     }
 
+    /**
+     * 设置鼠标单击时触发事件
+     * @param v 被触发的控件
+     */
     @Override
     public void onClick(View v) {
         switch (v.getId()){
+            // 登记信息点击 确定 时对应的事件
             case R.id.bt_addRegister:
                 String temperature = etAddRegisterTemperature.getText().toString();
                 String pressure = etAddRegisterPressure.getText().toString();

@@ -35,6 +35,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         userDataUtil = new UserDataUtil(this);
         rbLoginAdm.setChecked(true);
         curRole = Role.ADMIN.value;
+        // 监听单选框，选角色时将值赋给curRole
         rgChoose.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, @IdRes int i) {
@@ -81,6 +82,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                     Toast.makeText(mActivity, "密码错误", Toast.LENGTH_SHORT).show();
                     break;
                 }
+                // 登录时把登录账号的信息进行保存
                 setCurUser(curUser);
                 startActivity(AdminActivity.class,null,true);
                 finish();

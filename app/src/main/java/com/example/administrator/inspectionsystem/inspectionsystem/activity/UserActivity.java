@@ -55,11 +55,19 @@ public class UserActivity extends BaseActivity implements View.OnClickListener {
         rvUserList = findViewById(R.id.rv_user);
         btCurUserEdit.setOnClickListener(this);
     }
+
+    /**
+     * 在菜单栏中添加"新增角色"按钮
+     * @param menu
+     * @return
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_adduser,menu);
         return true;
     }
+
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.item_adduser){

@@ -33,6 +33,7 @@ public class DetailRegisterActivity extends BaseActivity implements View.OnClick
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_register);
         setToolBar(R.id.tb_detail_register);
+        // 通过getIntent获得上一个活动通过bundle传递过来的数据
         device = (Device) getIntent().getSerializableExtra("editDevice");
         initHome();
         bindView();
@@ -62,11 +63,22 @@ public class DetailRegisterActivity extends BaseActivity implements View.OnClick
         fbRegister = findViewById(R.id.fb_register);
         fbRegister.setOnClickListener(this);
     }
+
+    /**
+     * 对时间进行格式化
+     * @param format 例如："yyyy-MM-dd HH:mm"
+     * @param time 被格式化的时间
+     * @return 格式化后的时间
+     */
     public static String formatTime(String format, long time)
     {
         SimpleDateFormat df = new SimpleDateFormat(format);
         return df.format(new Date(time));
     }
+
+    /**
+     * 重新加载界面时，可能数据已经发生改变，需要刷新视图
+     */
     protected void onResume() {
         super.onResume();
         registerAdapter.setList(registerDataUtil.getRegisters(device.getId()));
@@ -77,6 +89,7 @@ public class DetailRegisterActivity extends BaseActivity implements View.OnClick
         switch (v.getId()){
             case R.id.fb_register:
                 Intent intent = new Intent(this,AddRegisterActivity.class);
+                // 将数据放到bundle里面，传递给下一个activity
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("registerDevice",device);
                 intent.putExtras(bundle);

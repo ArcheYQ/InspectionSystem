@@ -13,6 +13,9 @@ import com.example.administrator.inspectionsystem.inspectionsystem.bean.Role;
 import com.example.administrator.inspectionsystem.inspectionsystem.bean.User;
 import com.example.administrator.inspectionsystem.inspectionsystem.utils.UserDataUtil;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
 public class EditUserActivity extends BaseActivity implements View.OnClickListener {
     EditText etEditPassword;
     TextView tvEditAccount;
@@ -38,7 +41,7 @@ public class EditUserActivity extends BaseActivity implements View.OnClickListen
         tvEditUsername = findViewById(R.id.tv_edituser_username);
         btEditUser = findViewById(R.id.bt_editUser);
         btDeleteUser = findViewById(R.id.bt_deleteUser);
-        if(editUser.getRole().equals(Role.INSPECTOR)){
+        if(editUser.getRole().equals(Role.ADMIN)){
             btDeleteUser.setClickable(true);
             btDeleteUser.setVisibility(View.VISIBLE);
         }

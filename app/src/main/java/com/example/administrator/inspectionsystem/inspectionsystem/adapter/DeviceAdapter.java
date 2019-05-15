@@ -33,12 +33,24 @@ public class DeviceAdapter extends RecyclerView.Adapter<DeviceAdapter.DeviceView
         this.list = list;
         notifyDataSetChanged();
     }
+
+    /**
+     * 对设备的样式进行初始化
+     * @param parent
+     * @param viewType
+     * @return
+     */
     @NonNull
     @Override
     public DeviceViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         return new DeviceViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_device, parent, false));
     }
 
+    /**
+     * 将设备的数据绑定到视图上
+     * @param holder
+     * @param position
+     */
     @Override
     public void onBindViewHolder(@NonNull DeviceViewHolder holder, int position) {
         holder.load(list.get(position));
@@ -49,7 +61,10 @@ public class DeviceAdapter extends RecyclerView.Adapter<DeviceAdapter.DeviceView
         return list == null ? 0 : list.size();
     }
 
-    public class DeviceViewHolder extends RecyclerView.ViewHolder {
+    /**
+     * 自定义一个内部类，将"设备"需要的多个组件封装到一起，面向对象的思想
+     */
+    class DeviceViewHolder extends RecyclerView.ViewHolder {
         TextView tvAdmAccount;
         TextView tvPublic;
         TextView tvNumber;
@@ -57,7 +72,12 @@ public class DeviceAdapter extends RecyclerView.Adapter<DeviceAdapter.DeviceView
         TextView tvAddTime;
         TextView tvLocation;
         Button btEdit;
-        public DeviceViewHolder(View itemView) {
+
+        /**
+         * 对样式进行初始化
+         * @param itemView
+         */
+        DeviceViewHolder(View itemView) {
             super(itemView);
             tvAdmAccount = itemView.findViewById(R.id.tv_item_device_admaccount);
             tvPublic = itemView.findViewById(R.id.tv_item_device_public);
@@ -67,7 +87,12 @@ public class DeviceAdapter extends RecyclerView.Adapter<DeviceAdapter.DeviceView
             tvLocation = itemView.findViewById(R.id.tv_item_device_location);
             btEdit = itemView.findViewById(R.id.bt_item_device);
         }
-        public void load(final Device device){
+
+        /**
+         * 对数据进行绑定
+         * @param device
+         */
+        void load(final Device device){
             tvAdmAccount.setText("管理人员：" + device.getAdmAccount().toString());
             tvNumber.setText("设备编号：" + device.getNumber().toString());
             tvName.setText("设备名称：" + device.getName().toString());
@@ -94,14 +119,15 @@ public class DeviceAdapter extends RecyclerView.Adapter<DeviceAdapter.DeviceView
 
         }
     }
-    public void startActivity( Class<?> cls, Device device){
+    private void startActivity(Class<?> cls, Device device){
         Intent intent = new Intent(context, cls);
         Bundle bundle = new Bundle();
         bundle.putSerializable("editDevice",device);
         intent.putExtras(bundle);
         context.startActivity(intent);
     }
-    public static String formatTime(String format, long time)
+
+    private static String formatTime(String format, long time)
     {
         SimpleDateFormat df = new SimpleDateFormat(format);
         return df.format(new Date(time));

@@ -19,6 +19,11 @@ public class AddDeviceActivity extends BaseActivity implements View.OnClickListe
     DeviceDataUtil deviceDataUtil;
     SwitchButton switchButton;
     Device device;
+
+    /**
+     * 创建活动时进行初始化
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,6 +35,9 @@ public class AddDeviceActivity extends BaseActivity implements View.OnClickListe
         deviceDataUtil = new DeviceDataUtil(this);
     }
 
+    /**
+     * 将组件与视图进行绑定，并且设置switch按钮状态改变时触发的事件
+     */
     private void bindView() {
         etAddDeviceName = findViewById(R.id.et_adddevice_name);
         etAddDeviceLocation = findViewById(R.id.et_addDevice_location);
@@ -46,25 +54,27 @@ public class AddDeviceActivity extends BaseActivity implements View.OnClickListe
         btAddDevice.setOnClickListener(this);
     }
 
+    /**
+     * 设置鼠标单击时触发事件
+     * @param v 被触发的控件
+     */
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
-            case R.id.bt_addDevice:
-                String name = etAddDeviceName.getText().toString();
-                String location = etAddDeviceLocation.getText().toString();
-                String number = etAddDeviceNumber.getText().toString();
-                if (name.isEmpty() || location.isEmpty() || number.isEmpty()){
-                    Toast.makeText(mActivity, "请将信息填写完整", Toast.LENGTH_SHORT).show();
-                    break;
-                }
-                device.setName(name);
-                device.setAdmAccount(getCurUser().getAccount());
-                device.setNumber(number);
-                device.setLocation(location);
-                device.setAddTime(System.currentTimeMillis());
-                deviceDataUtil.addDevice(device);
-                finish();
-                break;
+        if (v.getId() == R.id.bt_addDevice) {
+            String name = etAddDeviceName.getText().toString();
+            String location = etAddDeviceLocation.getText().toString();
+            String number = etAddDeviceNumber.getText().toString();
+            if (name.isEmpty() || location.isEmpty() || number.isEmpty()) {
+                Toast.makeText(mActivity, "请将信息填写完整", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            device.setName(name);
+            device.setAdmAccount(getCurUser().getAccount());
+            device.setNumber(number);
+            device.setLocation(location);
+            device.setAddTime(System.currentTimeMillis());
+            deviceDataUtil.addDevice(device);
+            finish();
         }
     }
 }

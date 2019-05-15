@@ -2,6 +2,10 @@ package com.example.administrator.inspectionsystem.inspectionsystem.bean;
 
 import java.io.Serializable;
 
+/**
+ * 定义一个POJO（简单Java对象），用于与数据库中的表进行对应，方便数据的存储
+ * 类中的每一个成员变量都与数据库中表格的字段相对应
+ */
 public class Device implements Serializable {
 
     /**
